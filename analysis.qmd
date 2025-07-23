@@ -9,15 +9,26 @@ execute:
 
 ```{r}
 #| message: false
+library(MASS)
 library(tidyverse)
 library(primer.data)
+library(broom)
+library(easystats)
 ```
 
 
 ```{r}
-x <- ces |> filter(year == 2020) |> select(approval, education, ideology) |> drop_na() |> slice_sample(n = 2000)
+x <- ces |>
+  filter(year == 2020) |>
+  select(approval, ideology, education) |>
+  drop_na() |> 
+  filter(! ideology %in% "Not Sure") |> 
+  mutate(ideology = fct_drop(ideology))
 ```
 
+```{r}
+polr(formula = approval ~ ideology + education, data = x)
+```
 
 ```{r}
 x |>
@@ -31,4 +42,41 @@ x |>
        caption = "Data from CES")
 ```
 
-Public opinion about national leaders often varies with political beliefs and personal characteristics. Using data from the 2020 Cooperative Election Study, which is a large national survey of over 50,000 Americans, we explore how presidential approval differs between respondents who identify as Very Liberal and Very Conservative.
+Public opinion about national leaders often varies with political beliefs and personal characteristics. Using data from the 2020 Cooperative Election Study, which is a large national survey of over 50,000 Americans, we explore how presidential approval differs between respondents who identify as Very Liberal and Very Conservative. One concern is that survey respondents might be systematically different from other Americans.
+
+$$
+P(Y \leq k) = \frac{1}{1 + \exp\left[-\left(\theta_k - \beta_1 X_1 - \beta_2 X_2\right)\right]}
+$$
+
+with
+
+$$
+Y \sim \text{Ordinal}(\boldsymbol{\rho}), \quad \boldsymbol{\rho} = (\rho_1, \rho_2, \dots, \rho_K)
+$$
+
+
+```{r}
+fit_approval <- polr(approval ~ ideology + education,
+                      data = x)
+```
+
+```{r}
+fit_approval |> tidy(conf.int = TRUE)
+```
+
+$$
+\begin{aligned}
+\eta &= 0.61\,\text{ideology}_{\text{Liberal}} + 2.4\,\text{ideology}_{\text{Moderate}} + 4.46\,\text{ideology}_{\text{Conservative}} + 5.45\,\text{ideology}_{\text{Very Conservative}} \\
+&\quad - 0.10\,\text{education}_{\text{High School Graduate}} - 0.31\,\text{education}_{\text{Some College}} - 0.32\,\text{education}_{\text{2-Year}} \\
+&\quad - 0.52\,\text{education}_{\text{4-Year}} - 0.73\,\text{education}_{\text{Post-Grad}} \\
+\\
+\log\left[ \frac{P(\text{approval} \leq \text{Strongly Disapprove})}{1 - P(\text{approval} \leq \text{Strongly Disapprove})} \right] &= 2.26 + \eta \\
+\log\left[ \frac{P(\text{approval} \leq \text{Disapprove / Somewhat Disapprove})}{1 - P(\text{approval} \leq \text{Disapprove / Somewhat Disapprove})} \right] &= 2.73 + \eta \\
+\log\left[ \frac{P(\text{approval} \leq \text{Neither Approve nor Disapprove})}{1 - P(\text{approval} \leq \text{Neither Approve nor Disapprove})} \right] &= 2.82 + \eta \\
+\log\left[ \frac{P(\text{approval} \leq \text{Approve / Somewhat Approve})}{1 - P(\text{approval} \leq \text{Approve / Somewhat Approve})} \right] &= 3.93 + \eta
+\end{aligned}
+$$
+
+```{r}
+#| cache: true
+```
