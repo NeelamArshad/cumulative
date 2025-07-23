@@ -15,6 +15,7 @@ library(primer.data)
 library(broom)
 library(easystats)
 library(gt)
+library(marginaleffects)
 ```
 
 ```{r}
@@ -46,7 +47,6 @@ x |>
        caption = "Data from CES")
 ```
 
-Public opinion about national leaders often varies with political beliefs and personal characteristics. Using data from the 2020 Cooperative Election Study, which is a large national survey of over 50,000 Americans, we explore how presidential approval differs between respondents who identify as Very Liberal and Very Conservative. One concern is that survey respondents might be systematically different from other Americans. We model presidential approval as an ordinal function of political ideology and education level using a cumulative logit model.
 
 $$
 P(Y \leq k) = \frac{1}{1 + \exp\left[-\left(\theta_k - \beta_1 X_1 - \beta_2 X_2\right)\right]}
@@ -107,3 +107,18 @@ tidy(fit_approval, conf.int = TRUE) |>
     subtitle = "Estimates and 95% Confidence Intervals"
   )
 ```
+
+```{r}
+plot_predictions(fit_approval, condition = c("ideology", "education")) +
+  labs(
+    title = "Predicted Presidential Approval by Ideology and Education",
+    subtitle = "Approval generally increases with conservatism; education has smaller, nuanced effects 
+    within groups.",
+    caption = "Source: 2020 Cooperative Election Study",
+    x = "Ideology",
+    y = "Predicted Probability"
+  ) +
+  theme_minimal()
+```
+
+Public opinion about national leaders often varies with political beliefs and personal characteristics. Using data from the 2020 Cooperative Election Study, which is a large national survey of over 50,000 Americans, we explore how presidential approval differs between respondents who identify as Very Liberal and Very Conservative. One concern is that survey respondents might be systematically different from other Americans. We model presidential approval as an ordinal function of political ideology and education level using a cumulative logit model. People who are very conservative are more likely to approve the president higher by about 5.6 compared to people who are very liberal. We are 95% confident that the true value is between 4.9 and 6.2.

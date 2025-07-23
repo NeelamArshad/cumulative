@@ -106,6 +106,9 @@ window.Quarto = {
 <div class="cell-output cell-output-stderr">
 <pre><code>Warning: package 'purrr' was built under R version 4.5.1</code></pre>
 </div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: package 'gt' was built under R version 4.5.1</code></pre>
+</div>
 </div>
 <div class="cell">
 <div class="cell-output cell-output-stdout">
@@ -142,12 +145,11 @@ AIC: 99099.66 </code></pre>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="analysis_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="analysis_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
 </div>
-<p>Public opinion about national leaders often varies with political beliefs and personal characteristics. Using data from the 2020 Cooperative Election Study, which is a large national survey of over 50,000 Americans, we explore how presidential approval differs between respondents who identify as Very Liberal and Very Conservative. One concern is that survey respondents might be systematically different from other Americans.</p>
 <p><span class="math display">\[
 P(Y \leq k) = \frac{1}{1 + \exp\left[-\left(\theta_k - \beta_1 X_1 - \beta_2 X_2\right)\right]}
 \]</span></p>
@@ -191,6 +193,576 @@ Re-fitting to get Hessian</code></pre>
 \log\left[ \frac{P(\text{approval} \leq \text{Approve / Somewhat Approve})}{1 - P(\text{approval} \leq \text{Approve / Somewhat Approve})} \right] &amp;= 3.93 + \eta
 \end{aligned}
 \]</span></p>
+<div class="cell">
+<div class="cell-output cell-output-stderr">
+<pre><code>
+Re-fitting to get Hessian</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 13 × 7
+   term                estimate std.error statistic conf.low conf.high coef.type
+   &lt;chr&gt;                  &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;     &lt;dbl&gt; &lt;chr&gt;    
+ 1 ideologyLiberal       0.615     0.0538     11.4     0.510    0.721  coeffici…
+ 2 ideologyModerate      2.40      0.0474     50.6     2.31     2.49   coeffici…
+ 3 ideologyConservati…   4.46      0.0499     89.3     4.36     4.55   coeffici…
+ 4 ideologyVery Conse…   5.45      0.0550     99.1     5.34     5.55   coeffici…
+ 5 educationHigh Scho…  -0.0957    0.0600     -1.60   -0.213    0.0219 coeffici…
+ 6 educationSome Coll…  -0.311     0.0607     -5.12   -0.430   -0.192  coeffici…
+ 7 education2-Year      -0.325     0.0638     -5.09   -0.450   -0.199  coeffici…
+ 8 education4-Year      -0.521     0.0606     -8.59   -0.640   -0.402  coeffici…
+ 9 educationPost-Grad   -0.727     0.0634    -11.5    -0.852   -0.603  coeffici…
+10 Strongly Disapprov…   2.26      0.0724     31.2    NA       NA      scale    
+11 Disapprove / Somew…   2.73      0.0727     37.6    NA       NA      scale    
+12 Neither Approve no…   2.82      0.0727     38.8    NA       NA      scale    
+13 Approve / Somewhat…   3.93      0.0735     53.5    NA       NA      scale    </code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output cell-output-stderr">
+<pre><code>
+Re-fitting to get Hessian</code></pre>
+</div>
+<div class="cell-output-display">
+<div id="zsllrulxok" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#zsllrulxok table {
+  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#zsllrulxok thead, #zsllrulxok tbody, #zsllrulxok tfoot, #zsllrulxok tr, #zsllrulxok td, #zsllrulxok th {
+  border-style: none;
+}
+
+#zsllrulxok p {
+  margin: 0;
+  padding: 0;
+}
+
+#zsllrulxok .gt_table {
+  display: table;
+  border-collapse: collapse;
+  line-height: normal;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#zsllrulxok .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+#zsllrulxok .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#zsllrulxok .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 3px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#zsllrulxok .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#zsllrulxok .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#zsllrulxok .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#zsllrulxok .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#zsllrulxok .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#zsllrulxok .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#zsllrulxok .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#zsllrulxok .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#zsllrulxok .gt_spanner_row {
+  border-bottom-style: hidden;
+}
+
+#zsllrulxok .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+#zsllrulxok .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#zsllrulxok .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#zsllrulxok .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#zsllrulxok .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#zsllrulxok .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#zsllrulxok .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#zsllrulxok .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#zsllrulxok .gt_row_group_first th {
+  border-top-width: 2px;
+}
+
+#zsllrulxok .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#zsllrulxok .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#zsllrulxok .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#zsllrulxok .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#zsllrulxok .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#zsllrulxok .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#zsllrulxok .gt_last_grand_summary_row_top {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: double;
+  border-bottom-width: 6px;
+  border-bottom-color: #D3D3D3;
+}
+
+#zsllrulxok .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#zsllrulxok .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#zsllrulxok .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#zsllrulxok .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#zsllrulxok .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#zsllrulxok .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#zsllrulxok .gt_left {
+  text-align: left;
+}
+
+#zsllrulxok .gt_center {
+  text-align: center;
+}
+
+#zsllrulxok .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#zsllrulxok .gt_font_normal {
+  font-weight: normal;
+}
+
+#zsllrulxok .gt_font_bold {
+  font-weight: bold;
+}
+
+#zsllrulxok .gt_font_italic {
+  font-style: italic;
+}
+
+#zsllrulxok .gt_super {
+  font-size: 65%;
+}
+
+#zsllrulxok .gt_footnote_marks {
+  font-size: 75%;
+  vertical-align: 0.4em;
+  position: initial;
+}
+
+#zsllrulxok .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#zsllrulxok .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#zsllrulxok .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#zsllrulxok .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#zsllrulxok .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#zsllrulxok .gt_indent_5 {
+  text-indent: 25px;
+}
+
+#zsllrulxok .katex-display {
+  display: inline-flex !important;
+  margin-bottom: 0.75em !important;
+}
+
+#zsllrulxok div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+  height: 0px !important;
+}
+</style>
+
+<table class="gt_table caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+<thead>
+<tr class="gt_heading header">
+<th colspan="4" class="gt_heading gt_title gt_font_normal">Model Coefficients for Presidential Approval</th>
+</tr>
+<tr class="gt_heading even">
+<th colspan="4" class="gt_heading gt_subtitle gt_font_normal gt_bottom_border">Estimates and 95% Confidence Intervals</th>
+</tr>
+<tr class="gt_col_headings header">
+<th id="Term" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">Term</th>
+<th id="Estimate" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">Estimate</th>
+<th id="Lower-95%-CI" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">Lower 95% CI</th>
+<th id="Upper-95%-CI" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">Upper 95% CI</th>
+</tr>
+</thead>
+<tbody class="gt_table_body">
+<tr class="odd">
+<td class="gt_row gt_left" headers="Term">ideologyLiberal</td>
+<td class="gt_row gt_right" headers="Estimate">0.61</td>
+<td class="gt_row gt_right" headers="Lower 95% CI">0.51</td>
+<td class="gt_row gt_right" headers="Upper 95% CI">0.72</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Term">ideologyModerate</td>
+<td class="gt_row gt_right" headers="Estimate">2.40</td>
+<td class="gt_row gt_right" headers="Lower 95% CI">2.31</td>
+<td class="gt_row gt_right" headers="Upper 95% CI">2.49</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Term">ideologyConservative</td>
+<td class="gt_row gt_right" headers="Estimate">4.46</td>
+<td class="gt_row gt_right" headers="Lower 95% CI">4.36</td>
+<td class="gt_row gt_right" headers="Upper 95% CI">4.55</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Term">ideologyVery Conservative</td>
+<td class="gt_row gt_right" headers="Estimate">5.45</td>
+<td class="gt_row gt_right" headers="Lower 95% CI">5.34</td>
+<td class="gt_row gt_right" headers="Upper 95% CI">5.55</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Term">educationHigh School Graduate</td>
+<td class="gt_row gt_right" headers="Estimate">-0.10</td>
+<td class="gt_row gt_right" headers="Lower 95% CI">-0.21</td>
+<td class="gt_row gt_right" headers="Upper 95% CI">0.02</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Term">educationSome College</td>
+<td class="gt_row gt_right" headers="Estimate">-0.31</td>
+<td class="gt_row gt_right" headers="Lower 95% CI">-0.43</td>
+<td class="gt_row gt_right" headers="Upper 95% CI">-0.19</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Term">education2-Year</td>
+<td class="gt_row gt_right" headers="Estimate">-0.32</td>
+<td class="gt_row gt_right" headers="Lower 95% CI">-0.45</td>
+<td class="gt_row gt_right" headers="Upper 95% CI">-0.20</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Term">education4-Year</td>
+<td class="gt_row gt_right" headers="Estimate">-0.52</td>
+<td class="gt_row gt_right" headers="Lower 95% CI">-0.64</td>
+<td class="gt_row gt_right" headers="Upper 95% CI">-0.40</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Term">educationPost-Grad</td>
+<td class="gt_row gt_right" headers="Estimate">-0.73</td>
+<td class="gt_row gt_right" headers="Lower 95% CI">-0.85</td>
+<td class="gt_row gt_right" headers="Upper 95% CI">-0.60</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output cell-output-stderr">
+<pre><code>
+Re-fitting to get Hessian</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="analysis_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Public opinion about national leaders often varies with political beliefs and personal characteristics. Using data from the 2020 Cooperative Election Study, which is a large national survey of over 50,000 Americans, we explore how presidential approval differs between respondents who identify as Very Liberal and Very Conservative. One concern is that survey respondents might be systematically different from other Americans. We model presidential approval as an ordinal function of political ideology and education level using a cumulative logit model. People who are very conservative are more likely to approve the president higher by about 5.6 compared to people who are very liberal. We are 95% confident that the true value is between 4.9 and 6.2.</p>
 
 </main>
 <!-- /main column -->
