@@ -107,3 +107,4 @@ tidy(fit_approval, conf.int = TRUE) |>
     subtitle = "Estimates and 95% Confidence Intervals"
   )
 ```
+
