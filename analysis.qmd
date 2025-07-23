@@ -2,5 +2,33 @@
 title: "Cumulative"
 author: "Neelam Arshad"
 format: html
+execute: 
+  echo: false
 ---
 
+
+```{r}
+#| message: false
+library(tidyverse)
+library(primer.data)
+```
+
+
+```{r}
+x <- ces |> filter(year == 2020) |> select(approval, education, ideology) |> drop_na() |> slice_sample(n = 2000)
+```
+
+
+```{r}
+x |>
+  ggplot(aes(x = ideology, fill = approval)) +
+  geom_bar() +
+  labs(title = "Relationship Between President Approval and Political Ideology",
+       subtitle = "Most people strongly disapprove.",
+       x = "Political Ideology",
+       y = "Count",
+       fill = "Approval of the President",
+       caption = "Data from CES")
+```
+
+Public opinion about national leaders often varies with political beliefs and personal characteristics. Using data from the 2020 Cooperative Election Study, which is a large national survey of over 50,000 Americans, we explore how presidential approval differs between respondents who identify as Very Liberal and Very Conservative.
